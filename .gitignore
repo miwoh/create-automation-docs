@@ -1,0 +1,8 @@
+**/log
+**/__pycache__
+**/conf/*
+**/conf/!example.env
+**/input/*
+**/input/!example.json
+**/backup/*
+.idea
