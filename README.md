@@ -1,3 +1,5 @@
+> **_NOTE:_** This readme and this script was created by utilizing Gemini Pro by Google and GitHub Copilot. Use at your own discretion. Read everything before running anything.
+
 # Jira Automation Documentation Generator
 
 This tool parses **Jira Automation** export files (JSON) and converts them into human-readable documentation. It can generate a local **Markdown** file or upload the documentation directly to **Confluence Cloud** using the Atlassian Document Format (ADF) for rich formatting.
@@ -17,7 +19,6 @@ This tool parses **Jira Automation** export files (JSON) and converts them into 
 
 ## 🛠️ Prerequisites
 
-* Python 3.8+
 * A Jira Cloud or Datacenter instance (to export automations) and, subsequently, an exported JSON file of your Jira Automation rules.
 * A Confluence Cloud (Datacenter unsupported as target) instance (if using Confluence upload modes).
 * A Confluence Cloud email/token of an account with permissions to create/edit pages in the target space.
@@ -43,17 +44,14 @@ This tool parses **Jira Automation** export files (JSON) and converts them into 
 
 ## ⚙️ Configuration
 
-1.  **Get your Jira Automation Export:**
-    * Go to **Jira Settings** > **System** > **Global Automation**.
-    * Click the **...** (three dots) menu in the top right and select **Export**.
-    * Save the downloaded JSON file as `*.json`.
+### 1. Set up Environment Variables
+We provide a template file to get you started quickly.
 
-2.  **Set up Environment Variables:**
-    * Copy the example configuration file:
-        ```bash
-        cp config/example.env .env
-        ```
-    * Open `.env` and fill in your details:
+1.  Copy the example configuration file from the `config` folder to the root directory:
+    ```bash
+    cp config/example.env .env
+    ```
+2.  Open `.env` in your text editor and fill in your details:
 
 | Variable | Description | Required For |
 | :--- | :--- | :--- |
@@ -68,6 +66,12 @@ This tool parses **Jira Automation** export files (JSON) and converts them into 
 | `PAGE_TITLE_PREFIX` | Prefix added to page titles (e.g., `[AUTO]`). | `CONFLUENCE_*` |
 | `CONFLUENCE_SINGLE_PAGE_TITLE` | The title of the summary page in Single Mode. | `CONFLUENCE_SINGLE` |
 
+### 2. Get your Jira Automation Export
+1.  Go to **Jira Settings** > **System** > **Global Automation**.
+2.  Click the **...** (three dots) menu in the top right and select **Export**.
+3.  Save the downloaded JSON file as `input/jira_automations.json` (or update `INPUT_FILE_PATH` in your `.env` to match your filename).
+    * *Note: You can check `input/!example.json` to see what a valid export structure looks like.*
+
 ## 🏃 Usage
 
 Run the script using Python:
@@ -76,16 +80,16 @@ Run the script using Python:
 python main.py
 ```
 
-## Output Explanation
-### Mode: MARKDOWN
+## 🪣 Output Explanation
+_*Mode: MARKDOWN*_
 The script will parse the JSON and create a file (defined in OUTPUT_MARKDOWN_FILE) in the root directory. 
 This file contains formatted tables and lists describing your automations.
 
-### Mode: CONFLUENCE_SINGLE
+_*Mode: CONFLUENCE_SINGLE*_
 The script connects to Confluence and creates (or updates) a single page defined by CONFLUENCE_SINGLE_PAGE_TITLE. 
 All automations are listed sequentially on this page, separated by horizontal rules.
 
-### Mode: CONFLUENCE_MULTI
+_*Mode: CONFLUENCE_MULTI*_
 The script iterates through every rule in the JSON.
 It creates a child page for each rule under the CONFLUENCE_PARENT_PAGE_ID.
 The Page Title format is: [PREFIX] Rule Name (ID: <RuleID>).
@@ -97,4 +101,4 @@ The Page Title format is: [PREFIX] Rule Name (ID: <RuleID>).
 *Confluence Authentication Error:* Double-check your API Token. It is not your login password. You must generate it from the Atlassian ID management page.
 
 ## 📄 License
-use away, i dont care. Do take notice of the licenses of the dependencies though.
+Use away, i dont care. Do take notice of the licenses of the dependencies though.
