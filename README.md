@@ -81,15 +81,18 @@ python main.py
 ```
 
 ## 🪣 Output Explanation
-_*Mode: MARKDOWN*_
+**Mode: MARKDOWN**
+
 The script will parse the JSON and create a file (defined in OUTPUT_MARKDOWN_FILE) in the root directory. 
 This file contains formatted tables and lists describing your automations.
 
-_*Mode: CONFLUENCE_SINGLE*_
+**Mode: CONFLUENCE_SINGLE**
+
 The script connects to Confluence and creates (or updates) a single page defined by CONFLUENCE_SINGLE_PAGE_TITLE. 
 All automations are listed sequentially on this page, separated by horizontal rules.
 
-_*Mode: CONFLUENCE_MULTI*_
+**Mode: CONFLUENCE_MULTI**
+
 The script iterates through every rule in the JSON.
 It creates a child page for each rule under the CONFLUENCE_PARENT_PAGE_ID.
 The Page Title format is: [PREFIX] Rule Name (ID: <RuleID>).
@@ -97,8 +100,13 @@ The Page Title format is: [PREFIX] Rule Name (ID: <RuleID>).
 > **_NOTE:_** Including the ID in the title prevents naming conflicts if you have two rules with the same name.
 
 ## 📝 Troubleshooting
-*"Error: 'rules' key not found":* Ensure you exported the rules from the Global automation administration page, or ensure the JSON structure matches standard Jira exports.
-*Confluence Authentication Error:* Double-check your API Token. It is not your login password. You must generate it from the Atlassian ID management page.
+**"Error: 'rules' key not found":**
+
+Ensure you exported the rules from the Global automation administration page, or ensure the JSON structure matches standard Jira exports.
+
+**Confluence Authentication Error:**
+
+Double-check your API Token. It is not your login password. You must generate it from the Atlassian ID management page.
 
 ## 📄 License
 Use away, i dont care. Do take notice of the licenses of the dependencies though.
