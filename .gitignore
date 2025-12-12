@@ -1,7 +1,7 @@
 **/log
 **/__pycache__
-**/conf/*
-**/conf/!example.env
+**/config/*
+**/config/!example.env
 **/input/*
 **/input/!example.json
 **/backup/*
